@@ -62,16 +62,27 @@
 - (void)setupDisplayFiltering;
 {
     UIImage *inputImage = [UIImage imageNamed:@"WID-small.jpg"]; // The WID.jpg example is greater than 2048 pixels tall, so it fails on older devices
-    
+    GPUImageView *imageView = (GPUImageView *)self.view;
+
     sourcePicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
+    
+    GPUImageGrayscaleFilter *garyfilter = [[GPUImageGrayscaleFilter alloc] init];
+    [garyfilter forceProcessingAtSize:imageView.sizeInPixels];
+    [sourcePicture addTarget:garyfilter];
+//    [garyfilter addTarget:imageView];
+//
+
+    
+    
     sepiaFilter = [[GPUImageTiltShiftFilter alloc] init];
 //    sepiaFilter = [[GPUImageSobelEdgeDetectionFilter alloc] init];
-    
-    GPUImageView *imageView = (GPUImageView *)self.view;
     [sepiaFilter forceProcessingAtSize:imageView.sizeInPixels]; // This is now needed to make the filter run at the smaller output size
     
-    [sourcePicture addTarget:sepiaFilter];
+//    [sourcePicture addTarget:sepiaFilter];
+      [garyfilter addTarget:sepiaFilter];
     [sepiaFilter addTarget:imageView];
+    
+    
 
     [sourcePicture processImage];
 }

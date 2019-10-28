@@ -281,8 +281,3 @@
 167 #import "GPUImageJFAVoroniFilter.h"
 
 168 #import "GPUImageVoroniConsumerFilter.h"
-
-作者：清蘂翅膀的技术
-链接：<a href='https://www.jianshu.com/p/bdc5119a7312'>https://www.jianshu.com/p/bdc5119a7312</a>
-来源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
